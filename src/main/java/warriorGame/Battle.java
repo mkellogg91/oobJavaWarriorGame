@@ -1,23 +1,20 @@
 package warriorGame;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 // representation of a series of duels until hero wins all duels or dies
 public class Battle{
 	
-	Warrior[] warriorList;
+	ArrayList<Warrior> warriorList;
 	Warrior hero;
 	
 	// constructor
-	public Battle(Warrior[] warrList, Warrior hero ) {
+	public Battle(ArrayList<Warrior> warrList, Warrior hero ) {
 		this.warriorList = warrList;
 		this.hero = hero;
 		
 		// call battleManager
-	}
-	
-	public Battle() {
-		
 	}
 
 	// representation of a fight to the death between hero and warrior from warrList

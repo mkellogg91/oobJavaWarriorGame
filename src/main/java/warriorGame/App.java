@@ -1,6 +1,7 @@
 package warriorGame;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class App {
@@ -12,36 +13,45 @@ public class App {
 	 * -
 	 */
 	
-	
-	
-	public String getGreeting() {
-		return "Hello World";
+	public void startBattle(ArrayList<Warrior> warrList, Warrior hero) {
+		// create an instance of Battle
+		Battle battle = new Battle(warrList, hero);
 	}
 	
-	public void startBattle() {
+	// takes starter values for stats and a multiplyer and creates a hero and scaling list enemies using the multiplyer
+	public void battlePreparations(int enemyListLength, int strStarter, int healthStarter, int defStarter, String warriorName, int multiplyer) {
+		// create hero
+		Warrior myHero = createWarrior("Kaladin Frostbeard", healthStarter, strStarter, defStarter);
 		
+		// set up list of enemies
+		ArrayList<Warrior> warrList =  warriorListBuilder(enemyListLength, strStarter, healthStarter, defStarter, warriorName, multiplyer);
+		
+		// begin the battle
+		startBattle(warrList, myHero);
 	}
 	
 	// creates a list of warriors to fight by calling createWarrior multiple times
-	public Warrior[] warriorListBuilder(int listLength) {
-		
-		// create an array of Warrior type with the provided length
-		
+	public ArrayList<Warrior> warriorListBuilder(int listLength, int strStarter, int healthStarter, int defStarter, String warriorName, int multiplyer) {
 		
 		// create a list for dynamically adding warriors each iteration
 		ArrayList<Warrior> warriorList = new ArrayList<Warrior>();
 		
+		int multStrength = strStarter;
+		int multHealth = healthStarter;
+		int multDefense = defStarter;
+		
 		// loop length of list calling createWarrior method
 		for(int x = 0; x < listLength; x++) {
+			// call to create warrior
 			
 		}
 		
-		
-		return null;
+		// return list array of warriors
+		return warriorList;
 	}
 	
 	// creates a single warrior and handles rolling for stats
-	public Warrior createWarrior(String heroName, int maxHealthCap, int strengthCap, int defenseCap ) {
+	public Warrior createWarrior(String warriorName, int maxHealthCap, int strengthCap, int defenseCap ) {
 		
 		// roll for stats
 		int rolledHealth = getDieRoll(maxHealthCap, 1);
@@ -50,7 +60,7 @@ public class App {
 		
 		// call to create warrior
 		// int maxHealth, int strength, int defense, int hitpoints, String name
-		Warrior warrior = new Warrior(rolledHealth, rolledStrengthCap, rolledDefenseCap, rolledHealth, heroName);
+		Warrior warrior = new Warrior(rolledHealth, rolledStrengthCap, rolledDefenseCap, rolledHealth, warriorName);
 		
 		// return Warrior
 		return warrior;
@@ -66,25 +76,8 @@ public class App {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//new App().startFight();
-		//System.out.println(new App().getGreeting());
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
-		System.out.println(getDieRoll(6, 1));
+		// call for battle prep
+		new App().battlePreparations(10, 3, 3, 3, "Warrior", 2);
 		
 	}
 	
